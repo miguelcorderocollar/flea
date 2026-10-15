@@ -63,7 +63,7 @@ Item {
 
     readonly property color edge: root.picker.edge
 
-    readonly property bool folderButtonWrapped: !!root.picker.saving && root.width < moves.width + views.width + folderButton.implicitWidth + Theme.space(280)
+    readonly property bool folderButtonWrapped: root.width < moves.width + views.width + folderButton.implicitWidth + Theme.space(280)
     implicitHeight: ask.height + where.height + (root.folderButtonWrapped ? Theme.chromeHeight : 0)
 
     // The picker's answers are ButtonSystem040 A's one control at body size, framed inside the ask strip's insets; the picker owns Tab.
@@ -364,10 +364,10 @@ Item {
             id: types
             anchors.right: parent.right
             anchors.rightMargin: views.width + Theme.spacing.rowPaddingX + Theme.spacing.gap
-                + (root.picker.saving && !root.folderButtonWrapped ? folderButton.width + Theme.spacing.gap : 0)
+                + (!root.folderButtonWrapped ? folderButton.width + Theme.spacing.gap : 0)
             anchors.verticalCenter: parent.verticalCenter
             // The chips take room first and the path gives way through its anchor, keeping its minimum.
-            width: Picker.chipStripWidth(where.width - moves.width - views.width - (root.picker.saving && !root.folderButtonWrapped ? folderButton.width + Theme.spacing.gap : 0) - 2 * Theme.spacing.rowPaddingX - 3 * Theme.spacing.gap, chipRow.width, Picker.CHIP_PATH_MIN)
+            width: Picker.chipStripWidth(where.width - moves.width - views.width - (!root.folderButtonWrapped ? folderButton.width + Theme.spacing.gap : 0) - 2 * Theme.spacing.rowPaddingX - 3 * Theme.spacing.gap, chipRow.width, Picker.CHIP_PATH_MIN)
             height: Theme.hitMin
             contentWidth: chipRow.width
             contentHeight: height
@@ -437,7 +437,6 @@ Item {
         id: folderButton
         objectName: "pickerNewFolder"
         accessName: "New folder"
-        visible: !!root.picker.saving
         enabled: !!root.picker.canCreateFolder
         markItem.visible: false
         ringItem.visible: false
@@ -481,7 +480,7 @@ Item {
 
     function focusItems() {
         var items = [cancelButton, acceptButton, backButton, upButton]
-        if (root.picker.saving) items.push(folderButton)
+        items.push(folderButton)
         for (var i = 0; i < chipRepeater.count; i++) items.push(chipRepeater.itemAt(i))
         return items
     }

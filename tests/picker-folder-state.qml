@@ -43,9 +43,11 @@ ShellRoot {
         running: true
         onTriggered: {
             if (root.stage === 0) {
-                root.check(!folder.available, "open picker excludes folder creation")
+                root.check(folder.available, "open picker includes folder creation")
                 picker.saving = true
                 root.check(folder.available, "save picker includes folder creation")
+                picker.path = "smb://server"; root.check(!folder.available, "non-filesystem location excluded"); picker.path = "/synthetic"
+                picker.submitting = true; root.check(!folder.available, "submission excludes creation"); picker.submitting = false
                 picker.recent = true; root.check(!folder.available, "Recent excluded"); picker.recent = false
                 picker.listingState = "loading"; root.check(!folder.available, "loading excluded"); picker.listingState = "ready"
                 picker.listingFailed = true; root.check(!folder.available, "failed listing excluded"); picker.listingFailed = false

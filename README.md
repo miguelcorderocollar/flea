@@ -109,9 +109,9 @@ If you previously pinned another directory handler, restore that handler explici
 
 </details>
 
-## Saving files
+## Creating folders in file dialogs
 
-In a Save dialog, the **folder-plus button** or `Ctrl+Shift+N` creates one folder in the current location. Flea enters it and keeps the filename; **Save** remains a separate action. Cancelling the Save dialog afterwards does not remove the folder.
+In an Open, Save or Choose folder dialog, the **folder-plus button** or `Ctrl+Shift+N` creates one folder in the current location and opens it. The dialog stays open so you can finish choosing a file or folder. Save dialogs keep the filename; **Save** remains a separate action. Cancelling the file dialog afterwards does not remove the folder.
 
 ## Views
 

@@ -17,7 +17,7 @@ Item {
     property bool committed: false
     property var previousFocus: null
     readonly property bool ready: root.review > 0 && !root.picker.backendUnavailable
-    readonly property bool available: root.picker.saving && !root.active && !root.picker.backendUnavailable
+    readonly property bool available: !root.active && !root.picker.backendUnavailable
         && !root.picker.submitting && !root.picker.recent && !root.picker.listingFailed
         && root.picker.listingState !== "loading" && root.picker.path.charAt(0) === "/"
     readonly property var fieldItem: card.item ? card.item.fieldItem : null
@@ -80,7 +80,7 @@ Item {
             root.review = 0
             root.committed = true
             if (!message.path || root.picker.path !== root.folder) {
-                root.error = message.error || "The folder was created, but the save location changed. Reopen it to find the folder."
+                root.error = message.error || "The folder was created, but the location changed. Reopen it to find the folder."
                 return
             }
             var path = message.path
@@ -96,7 +96,7 @@ Item {
             root.pending = 0
             root.preparing = 0
             root.review = 0
-            root.error = "Flea stopped responding. Cancel and reopen the save dialog."
+            root.error = "Flea stopped responding. Cancel and reopen the file dialog."
         }
     }
     Loader {

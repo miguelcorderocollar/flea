@@ -1,4 +1,4 @@
-// The save picker's only mutation: one new directory under the folder reviewed when the card opened.
+// The picker's only mutation: one new directory under the folder reviewed when the card opened.
 use super::{Held, escape, field_str, field_usize, io_message};
 use crate::backend::trashmanifest::Cancellation;
 use std::ffi::CString;
@@ -44,7 +44,7 @@ impl Draft {
         let result = if held.current().is_ok() {
             format!(r#""created":true,"path":"{}""#, escape(&held.path.join(name).to_string_lossy()))
         } else {
-            r#""created":true,"path":"","error":"The folder was created, but its parent moved. Reopen the save location to find it.""#.into()
+            r#""created":true,"path":"","error":"The folder was created, but its parent moved. Reopen the location to find it.""#.into()
         };
         self.held = None;
         Ok(result)

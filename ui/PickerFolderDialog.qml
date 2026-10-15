@@ -3,7 +3,7 @@ import "." as Flea
 import "js/Format.js" as Format
 import "js/Picker.js" as Picker
 
-// A lazy modal card; its Tab/Escape/Enter never act on the save dialog underneath.
+// A lazy modal card; its Tab/Escape/Enter never act on the picker underneath.
 FocusScope {
     id: root
     required property var controller
@@ -78,7 +78,7 @@ FocusScope {
                 }
                 Text {
                     width: parent.width
-                    text: "Created folders remain if you cancel the save dialog."
+                    text: "Created folders remain if you cancel the file dialog."
                     color: Theme.color.foreground
                     font.family: Theme.font.family
                     font.pixelSize: Theme.font.caption

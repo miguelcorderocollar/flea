@@ -712,7 +712,10 @@ ShellRoot {
             picker: win
             onCreated: function(path) {
                 win.open(path)
-                Qt.callLater(function() { save.fieldItem.forceActiveFocus() })
+                Qt.callLater(function() {
+                    if (win.saving) save.fieldItem.forceActiveFocus()
+                    else win.focusView()
+                })
             }
         }
         Shortcut {
